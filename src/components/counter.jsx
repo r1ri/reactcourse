@@ -1,26 +1,21 @@
 import React, { Component } from "react";
 
 export default class Counter extends Component {
-  state = {
-    count: 0,
-  };
-
-  handleIncrement = () => {
-    this.setState({ count: this.state.count + 1 });
-  };
-
   render() {
     return (
       <div className="my-2">
         <span className={this.getBadgeClass()}>
-          {this.state.count === 0 ? "Zero" : this.state.count}
+          {this.props.counter.value === 0 ? "Zero" : this.props.counter.value}
         </span>
-        <button onClick={this.handleIncrement} className="btn btn-secondary">
+        <button
+          onClick={() => this.props.onIncrement(this.props.counter)}
+          className="btn btn-secondary"
+        >
           Increment
         </button>
         <button
           className="btn btn-danger btn-sm m-2"
-          onClick={this.props.onDelete}
+          onClick={() => this.props.onDelete(this.props.counter.id)}
         >
           delete
         </button>
@@ -30,7 +25,8 @@ export default class Counter extends Component {
 
   getBadgeClass() {
     return (
-      "badge m-2 badge-" + (this.state.count === 0 ? "warning" : "primary")
+      "badge m-2 badge-" +
+      (this.props.counter.value === 0 ? "warning" : "primary")
     );
   }
 }
