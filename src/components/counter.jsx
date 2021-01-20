@@ -2,31 +2,49 @@ import React, { Component } from "react";
 
 export default class Counter extends Component {
   render() {
+    const { counter, onIncrement, onDelete, onDecrement } = this.props;
+
     return (
-      <div className="my-2">
-        <span className={this.getBadgeClass()}>
-          {this.props.counter.value === 0 ? "Zero" : this.props.counter.value}
-        </span>
-        <button
-          onClick={() => this.props.onIncrement(this.props.counter)}
-          className="btn btn-secondary"
-        >
-          Increment
-        </button>
-        <button
-          className="btn btn-danger btn-sm m-2"
-          onClick={() => this.props.onDelete(this.props.counter.id)}
-        >
-          delete
-        </button>
+      <div className="row">
+        <div className="col-1">
+          <span className={this.getBadgeClass()}>
+            {counter.value === 0 ? "Zero" : counter.value}
+          </span>
+        </div>
+        <div className="col">
+          <button
+            onClick={() => onIncrement(counter)}
+            className="btn btn-secondary btn-sm"
+          >
+            +
+          </button>
+          <button
+            onClick={() => onDecrement(counter)}
+            className={this.getDecrementBadgeClass()}
+          >
+            -
+          </button>
+          <button
+            className="btn btn-danger btn-sm"
+            onClick={() => onDelete(counter.id)}
+          >
+            x
+          </button>
+        </div>
       </div>
+    );
+  }
+
+  getDecrementBadgeClass() {
+    return (
+      "btn btn-secondary btn-sm m-2 " +
+      (this.props.counter.value === 0 ? "disabled" : "active")
     );
   }
 
   getBadgeClass() {
     return (
-      "badge m-2 badge-" +
-      (this.props.counter.value === 0 ? "warning" : "primary")
+      "badge m-2 badge-" + (this.props.counter.value === 0 ? "warning" : "primary")
     );
   }
 }
