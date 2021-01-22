@@ -7,18 +7,11 @@ export default class Like extends Component {
   state = {
     liked: false
   }
-  getIcon= () => {
 
-    return this.state.liked===false ? farHeart : faHeart
-  }
-  handleClick = () => {
-    let liked = !(this.state.liked);
-    console.log("test")
-    this.setState({liked})
-  }
   render() {
+    let icon = this.props.liked===false ? farHeart : faHeart
     return (
-       <FontAwesomeIcon icon={ this.getIcon() } onClick={this.handleClick} />
+      <FontAwesomeIcon icon={ icon } style={{cursor: 'pointer'}} onClick={this.props.onLike} />
     );
   }
 }
