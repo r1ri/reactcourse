@@ -1,19 +1,29 @@
-import React, { Component } from 'react'
-import { getGenres } from '../../services/fakeGenreService.js'
+import React from "react";
 
-export default class ListFilter extends Component {
-  getClassNames = (genre) => {
-    return "list-group-item " + (genre._id === this.props.activeGenreFilter ? "active" : "" );
-  }
+const ListFilter = (props) => {
+  const { items, textProperty, valueProperty, onItemSelect, selectedItem } = props;
 
-  render() {
-    return (
-      <ul className="list-group">
-        <li className="list-group-item">Genres</li>
-        {getGenres().map(g => ( 
-          <li onClick={() => this.props.onClick(g)} className={this.getClassNames(g)}>{g.name}</li>
-        ))}
-      </ul>
-    );
-  }
-}
+  return (
+    <ul className="list-group">
+      {items.map((item) => (
+        <li
+          key={item[valueProperty]}
+          onClick={() => onItemSelect(item)}
+          style={{cursor:'pointer'}}
+          className={
+            item === selectedItem ? "list-group-item active" : "list-group-item"
+          }
+        >
+          {item[textProperty]}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+ListFilter.defaultProps = {
+  textProperty: "name",
+  valueProperty: "_id",
+};
+
+export default ListFilter;
