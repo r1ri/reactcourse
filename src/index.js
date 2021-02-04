@@ -4,11 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css'
-import Table from './components/table'
+import Movies from './components/movies.jsx'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Table />
+    <Movies />
   </React.StrictMode>,
   document.getElementById('root')
 );
