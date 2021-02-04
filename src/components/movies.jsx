@@ -54,17 +54,7 @@ export default class Movies extends Component {
     this.setState({ selectedGenre: genre, currentPage: 0 });
   };
 
-  handleSort = (path) => {
-    const sortColumn = { ...this.state.sortColumn };
-    sortColumn.path = path;
-
-    if (path === sortColumn.path)
-      sortColumn.order = ( sortColumn.order === 'asc' ) ? 'desc' : 'asc';
-    else 
-      sortColumn = {path, order:'asc'};
-
-
-
+  handleSort = (sortColumn) => {
     this.setState({ sortColumn });
   };
 
@@ -108,6 +98,7 @@ export default class Movies extends Component {
                 onLike={this.handleLike}
                 onDelete={this.handleDelete}
                 movies={movies}
+                sortColumn={this.state.sortColumn}
               />
 
               <Pagination

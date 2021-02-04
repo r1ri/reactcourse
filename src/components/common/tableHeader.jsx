@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 export default class TableHeader extends Component {
   raiseSort = (path) => {
     const sortColumn = { ...this.state.sortColumn };
@@ -11,6 +10,7 @@ export default class TableHeader extends Component {
 
     this.props.onSort(sortColumn);
   };
+  
   render() {
     return (
       <thead>
