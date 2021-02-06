@@ -37,7 +37,7 @@ export default class MoviesTable extends Component {
           </button>
         ),
       },
-    ];
+     ];
 
     return (
       <Table
