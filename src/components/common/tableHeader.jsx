@@ -1,3 +1,5 @@
+import { faSortDown, faSortUp } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import React, { Component } from "react";
 export default class TableHeader extends Component {
   raiseSort = (path) => {
@@ -10,13 +12,26 @@ export default class TableHeader extends Component {
     this.props.onSort(sortColumn);
   };
 
+  renderSortIcon = (column) => {
+    if (column.path !== this.props.sortColumn.path) return null;
+    if (this.props.sortColumn.order === "asc")
+      return <FontAwesomeIcon icon={faSortUp} />;
+
+    return <FontAwesomeIcon icon={faSortDown} />;
+  };
+
   render() {
     return (
       <thead>
         <tr>
           {this.props.columns.map((c) => (
-            <th key={c.path || c.key} onClick={() => this.raiseSort(c.path)}>
+            <th
+              className="clickable"
+              key={c.path || c.key}
+              onClick={() => this.raiseSort(c.path)}
+            >
               {c.lable}
+              {this.renderSortIcon(c)}
             </th>
           ))}
         </tr>
