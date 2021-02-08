@@ -115,7 +115,7 @@ export default class Movies extends Component {
                 itemCount={totalCount}
                 pageLength={pageLength}
                 onPageChange={this.handlePageChange}
-                currentPage={currentPage}
+
               />
             </div>
           </div>
